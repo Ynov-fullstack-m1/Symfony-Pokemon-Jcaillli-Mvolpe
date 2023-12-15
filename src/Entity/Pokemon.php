@@ -16,14 +16,15 @@ class Pokemon
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
-
     #[ORM\Column]
     private ?int $point_de_vie = null;
 
     #[ORM\Column]
     private ?int $point_attaque = null;
+
+    #[ORM\ManyToOne(inversedBy: 'pokemon')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Type $type = null;
 
     public function getId(): ?int
     {
@@ -38,18 +39,6 @@ class Pokemon
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): static
-    {
-        $this->type = $type;
 
         return $this;
     }
@@ -74,6 +63,18 @@ class Pokemon
     public function setPointAttaque(int $point_attaque): static
     {
         $this->point_attaque = $point_attaque;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }
