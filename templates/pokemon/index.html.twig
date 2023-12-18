@@ -1,33 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Pokémons{% endblock %}
+{% block title %}Pokemon index{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Liste des Pokémon</h1>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
+    <h1>Pokemon index</h1>
+
+    <table class="table">
+        <thead>
             <tr>
-                <th scope="col" class="text-center d-none">ID</th>
-                <th scope="col" class="text-center col-4">Nom</th>
-                <th scope="col" class="text-center col-4">Type</th>
-                <th scope="col" class="text-center col-4">#</th>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Point_de_vie</th>
+                <th>Point_attaque</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for pokemon in allPokemon %}
-                <tr>
-                    <td class="text-center d-none">{{ pokemon.id }}</td>
-                    <td class="text-center">{{ pokemon.nom }}</td>
-                    <td class="text-center">{{ pokemon.type.nom }}</td>
-                    <td class="text-center">
-                        <a class='btn btn-light mr-2' href='/pokedex/show?id={{ pokemon.id }}'>Voir le Pokémon</a>
-                        <a class="btn btn-primary mr-2" href='/pokedex/edit?id={{ pokemon.id }}'>Edit</a>
-                        <a class="btn btn-danger" href='/pokedex/delete?id={{ pokemon.id }}'>Supprimer</a>
-                    </td>
-                </tr>
-            {% endfor %}
+        {% for pokemon in pokemons %}
+            <tr>
+                <td>{{ pokemon.id }}</td>
+                <td>{{ pokemon.nom }}</td>
+                <td>{{ pokemon.type.nom }}</td>
+                <td>{{ pokemon.pointDeVie }}</td>
+                <td>{{ pokemon.pointAttaque }}</td>
+                <td>
+                    <a href="{{ path('app_pokemon_show', {'id': pokemon.id}) }}">show</a>
+                    <a href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
-</div>
+
+    <a href="{{ path('app_pokemon_new') }}">Create new</a>
 {% endblock %}
