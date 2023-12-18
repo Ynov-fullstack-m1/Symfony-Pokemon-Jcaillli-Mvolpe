@@ -1,35 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Liste des Pokémon</title>
-    <!-- Bootstrap CSS via CDN -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container mt-5">
-    <h1>Liste des Pokémon</h1>
-    <table class="table table-dark table-striped">
-        <thead>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Accueil</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/pokedex/add">Ajouter</a>
+        </div>
+    </div>
+</nav>
 
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Liste des Pokémon</h1>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
             <tr>
-                <th>ID</th>
-                <th>Nom</th>
+                <th scope="col" class="text-center d-none">ID</th>
+                <th scope="col" class="text-center col-4">Nom</th>
+                <th scope="col" class="text-center col-4">Type</th>
+                <th scope="col" class="text-center col-4">#</th>
             </tr>
         </thead>
         <tbody>
             {% for pokemon in allPokemon %}
                 <tr>
-                    <td>{{ pokemon.id }}</td>
-                    <td>{{ pokemon.nom }}</td>
+                    <td class="text-center d-none">{{ pokemon.id }}</td>
+                    <td class="text-center">{{ pokemon.nom }}</td>
+                    <td class="text-center"></td>
+                    <td class="text-center">
+                        <a class='btn btn-light mr-2' href='/pokedex/show?id={{ pokemon.id }}'>Voir le Pokémon</a>
+                        <a class="btn btn-primary mr-2" href='/pokedex/edit?id={{ pokemon.id }}'>Edit</a>
+                        <a class="btn btn-danger" href='/pokedex/delete?id={{ pokemon.id }}'>Supprimer</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
-<!-- Bootstrap JavaScript via CDN (optional, only if needed for certain components) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 </html>
