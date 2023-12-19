@@ -14,12 +14,15 @@ class PokemonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('point_de_vie')
-            ->add('point_attaque')
+            ->add('nom', null,['attr' => ['class' => 'form-control col-12']])
+            ->add('point_de_vie', null,['attr' => ['class' => 'form-control col-12']])
+            ->add('point_attaque', null,['attr' => ['class' => 'form-control col-12']])
             ->add('type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'nom',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ])
         ;
     }
