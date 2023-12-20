@@ -3,7 +3,11 @@
 {% block title %}New Pokemon{% endblock %}
 
 {% block body %}
-    <h1>Create new Pokemon</h1>
-    {{ include('pokemon/_form.html.twig') }}
-    <a  class="btn btn-secondary" href="{{ path('app_pokemon_index') }}">back to list</a>
+    <h1 class="text-center">New Pokemon</h1>
+
+    <div class="card">
+        {{ include('pokemon/_form.html.twig') }}
+            <a  class="btn btn-secondary" href="{{ path('app_pokemon_index') }}">back to list</a>
+        </div>
+    </div>
 {% endblock %}
