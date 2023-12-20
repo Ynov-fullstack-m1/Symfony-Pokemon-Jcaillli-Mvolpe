@@ -3,42 +3,25 @@
 {% block title %}Pokemon{% endblock %}
 
 {% block body %}
+    <h1 class="text-center">Pokemon : {{ pokemon.nom }}</h1>
 
-<div class="card mt-5 ml-3 mr-3">
-    <h1>Pokemon</h1>
-</div>
-
-<div class="card mt-3 mr-3 ml-3">
-  <div class="card-body">
-    <table class="table table-hover ">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ pokemon.id }}</td>
-                </tr>
-                <tr>
-                    <th>Nom</th>
-                    <td>{{ pokemon.nom }}</td>
-                </tr>
-                <tr>
-                    <th>Type</th>
-                    <td>{{ pokemon.type.nom }}</td>
-                </tr>
-                <tr>
-                    <th>Point_de_vie</th>
-                    <td>{{ pokemon.pointDeVie }}</td>
-                </tr>
-                <tr>
-                    <th>Point_attaque</th>
-                    <td>{{ pokemon.pointAttaque }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-        <a class = "btn btn-primary mr-2 ml-4" href="{{ path('app_pokemon_index') }}">back to list</a>
-        <a class = "btn btn-warning mr-2" href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}">edit</a>
-        {{ include('pokemon/_delete_form.html.twig') }} </div>
-</div>
+    <div class="card mt-3 mr-3 ml-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ pokemon.nom }}</h5>
+            <div class="card-text card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Type : <a href="{{ path('app_type_show', {'id': pokemon.type.id}) }}">{{ pokemon.type.nom }}</a></li>
+                    <li class="list-group-item">Points de vie : {{ pokemon.pointDeVie }}</li>
+                    <li class="list-group-item">Points d'attaque : {{ pokemon.pointAttaque }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <a class = "btn btn-secondary mr-2 ml-4" href="{{ path('app_pokemon_index') }}">back to list</a>
+                <a class = "btn btn-warning mr-2" href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}">edit</a>
+                {{ include('pokemon/_delete_form.html.twig') }} </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

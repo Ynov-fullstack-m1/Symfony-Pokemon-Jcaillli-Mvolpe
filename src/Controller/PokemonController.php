@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/pokemon')]
+#[Route('/pokedex/pokemon')]
 class PokemonController extends AbstractController
 {
     #[Route('/', name: 'app_pokemon_index', methods: ['GET'])]

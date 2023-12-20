@@ -10,8 +10,8 @@
 
     {{ include('pokemon/_form.html.twig') }}
 
-    <div class="row">
-    <a class = "btn btn-primary mr-2 ml-4" href="{{ path('app_pokemon_index') }}">back to list</a>
+    <div class="flex-row">
+    <a class = "btn btn-secondary mr-2 ml-4" href="{{ path('app_pokemon_index') }}">back to list</a>
 
     {{ include('pokemon/_delete_form.html.twig') }}</div>
 {% endblock %}
