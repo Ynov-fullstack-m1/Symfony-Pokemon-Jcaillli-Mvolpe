@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PokemonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
@@ -22,9 +24,16 @@ class Pokemon
     #[ORM\Column]
     private ?int $point_attaque = null;
 
-    #[ORM\ManyToOne(inversedBy: 'pokemon')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Type $type = null;
+    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'pokemons')]
+    private Collection $types;
+
+    #[ORM\ManyToOne(inversedBy: 'pokemons')]
+    private ?User $dresseur = null;
+
+    public function __construct()
+    {
+        $this->types = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -73,14 +82,38 @@ class Pokemon
         return $this;
     }
 
-    public function getType(): ?Type
+    /**
+     * @return Collection<int, Type>
+     */
+    public function getTypes(): Collection
     {
-        return $this->type;
+        return $this->types;
     }
 
-    public function setType(?Type $type): static
+    public function addType(Type $type): static
     {
-        $this->type = $type;
+        if (!$this->types->contains($type)) {
+            $this->types->add($type);
+        }
+
+        return $this;
+    }
+
+    public function removeType(Type $type): static
+    {
+        $this->types->removeElement($type);
+
+        return $this;
+    }
+
+    public function getDresseur(): ?User
+    {
+        return $this->dresseur;
+    }
+
+    public function setDresseur(?User $dresseur): static
+    {
+        $this->dresseur = $dresseur;
 
         return $this;
     }

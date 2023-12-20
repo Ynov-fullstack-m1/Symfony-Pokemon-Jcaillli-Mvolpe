@@ -18,12 +18,13 @@ class Type
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Pokemon::class, orphanRemoval: true)]
-    private Collection $pokemon;
+    #[ORM\ManyToMany(targetEntity: Pokemon::class, mappedBy: 'types')]
+    private Collection $pokemons;
 
     public function __construct()
     {
         $this->pokemon = new ArrayCollection();
+        $this->pokemons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,16 +47,16 @@ class Type
     /**
      * @return Collection<int, Pokemon>
      */
-    public function getPokemon(): Collection
+    public function getPokemons(): Collection
     {
-        return $this->pokemon;
+        return $this->pokemons;
     }
 
     public function addPokemon(Pokemon $pokemon): static
     {
-        if (!$this->pokemon->contains($pokemon)) {
-            $this->pokemon->add($pokemon);
-            $pokemon->setType($this);
+        if (!$this->pokemons->contains($pokemon)) {
+            $this->pokemons->add($pokemon);
+            $pokemon->addType($this);
         }
 
         return $this;
@@ -63,11 +64,8 @@ class Type
 
     public function removePokemon(Pokemon $pokemon): static
     {
-        if ($this->pokemon->removeElement($pokemon)) {
-            // set the owning side to null (unless already changed)
-            if ($pokemon->getType() === $this) {
-                $pokemon->setType(null);
-            }
+        if ($this->pokemons->removeElement($pokemon)) {
+            $pokemon->removeType($this);
         }
 
         return $this;

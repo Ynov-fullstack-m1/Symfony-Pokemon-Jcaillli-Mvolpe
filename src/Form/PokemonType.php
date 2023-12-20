@@ -17,9 +17,11 @@ class PokemonType extends AbstractType
             ->add('nom', null,['attr' => ['class' => 'form-control col-12']])
             ->add('point_de_vie', null,['attr' => ['class' => 'form-control col-12']])
             ->add('point_attaque', null,['attr' => ['class' => 'form-control col-12']])
-            ->add('type', EntityType::class, [
+            ->add('types', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'nom',
+                'multiple' => true,
+                'expanded' => true,
                 'attr' => [
                     'class' => 'form-control',
                 ],

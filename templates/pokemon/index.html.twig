@@ -25,7 +25,11 @@
             <tr>
                 <td>{{ pokemon.id }}</td>
                 <td>{{ pokemon.nom }}</td>
-                <td><a href="{{ path('app_type_show', {'id': pokemon.type.id}) }}">{{ pokemon.type.nom }}</a></td>
+                <td>
+                    {% for type in pokemon.types %}
+                        <a href="{{ path('app_type_show', {'id': type.id}) }}">{{ type.nom }}</a>
+                    {% endfor %}
+                </td>
                 <td>{{ pokemon.pointDeVie }}</td>
                 <td>{{ pokemon.pointAttaque }}</td>
                 <td>

@@ -1,27 +1,31 @@
 {{ form_start(form) }}
     <div class="card mt-3 mr-3 ml-3">
-    <div class="card-body">
-        <div class="row mb-3">
-            <div class="col-4">
-                {{form_row(form.nom)}}
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-4">
+                    {{form_row(form.nom)}}
+                </div>
+                <div class="col-4">
+                    {{form_row(form.point_de_vie)}}
+                </div>
+                <div class="col-4">
+                    {{form_row(form.point_attaque)}}
+                </div>
             </div>
-                    <div class="col-4">
-                {{form_row(form.point_de_vie)}}
-            </div>
-                    <div class="col-4">
-                {{form_row(form.point_attaque)}}
+            <div class="row mb-3">
+                <div class="col-4">
+                        <div class="form-group">
+                    {% for type in form.types %}
+                            {{ form_widget(type) }}
+                            {{ form_label(type) }}
+                    {% endfor %}
+                        </div>
+                </div>
+                <div class="col-4">
+                    <label for="validationServer02" class="form-label"> _</label>
+                    <button class="btn btn-success ml-3 mb-3">{{ button_label|default('Save') }}</button>
+                </div>
             </div>
         </div>
-            <div class="row mb-3">
-            <div class="col-4">
-                {{form_row(form.type)}}
-            </div>
-                    <div class="row mb-3">
-            <div class="col-4">
-            <label for="validationServer02" class="form-label"> _</label>
-            <button class="btn btn-success ml-3 mb-3">{{ button_label|default('Save') }}</button>
-            </div>
     </div>
-    </div>
-
 {{ form_end(form) }}

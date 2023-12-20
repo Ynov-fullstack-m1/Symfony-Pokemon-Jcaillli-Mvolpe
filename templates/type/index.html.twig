@@ -21,7 +21,7 @@
                 <td>{{ type.nom }}</td>
                 <td>
                     <ul>
-                        {% for pokemon in type.pokemon %}
+                        {% for pokemon in type.pokemons %}
                             <li><a href="{{ path('app_pokemon_show', {'id': pokemon.id}) }}">{{ pokemon.nom }}</a></li>
                         {% else %}
                             <li>Aucun Pokémon de ce type trouvé</li>
