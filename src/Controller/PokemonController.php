@@ -75,6 +75,7 @@ class PokemonController extends AbstractController
             $entityManager->remove($pokemon);
             $entityManager->flush();
         }
+        
 
         return $this->redirectToRoute('app_pokemon_index', [], Response::HTTP_SEE_OTHER);
     }

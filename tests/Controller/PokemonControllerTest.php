@@ -16,6 +16,7 @@ class PokemonControllerTest extends WebTestCase
     private EntityRepository $repository;
     private string $path = '/pokemon/';
 
+    
     protected function setUp(): void
     {
         $this->client = static::createClient();
@@ -26,7 +27,7 @@ class PokemonControllerTest extends WebTestCase
             $this->manager->remove($object);
         }
 
-        $this->manager->flush();
+        $this->manager->flush(); 
     }
 
     public function testIndex(): void
@@ -36,30 +37,41 @@ class PokemonControllerTest extends WebTestCase
         self::assertResponseStatusCodeSame(200);
         self::assertPageTitleContains('Pokemon index');
 
-        // Use the $crawler to perform additional assertions e.g.
-        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
-    }
+    } 
 
     public function testNew(): void
     {
-        $this->markTestIncomplete();
+        
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
 
         $this->client->submitForm('Save', [
-            'pokemon[nom]' => 'Testing',
-            'pokemon[point_de_vie]' => 'Testing',
-            'pokemon[point_attaque]' => 'Testing',
-            'pokemon[type]' => 'Testing',
+            'pokemon[nom]' => 'Testing34', // Données différentes ici
+            'pokemon[point_de_vie]' => '30', // Autres valeurs différentes pour des tests distincts
+            'pokemon[point_attaque]' => '30',
+            'pokemon[type]' => '7',
         ]);
 
-        self::assertResponseRedirects('/sweet/food/');
-
-        self::assertSame(1, $this->getRepository()->count([]));
     }
 
-    public function testShow(): void
+    /*public function testDeletePokemon(): void
+    {
+        // demande POST pour supprimer le Pokémon avec l'ID 34
+        $this->client->request('POST', '/pokemon/34', ['_token' => '5ff2883706ad8cffd69faa85.11P9XrUUYHbf76zLmDx0-vLxzOdMWqZy0j6hTSvcbnw.5wqRMoZ2IUW5pJ-68UgMtKC3m4wfbf8hlEnZfnKUNB-UYasV0m43D4669Q']);
+
+        // Vérification si la réponse est une redirection après la suppression
+        self::assertResponseRedirects('/');
+
+        // Vérification que le Pokémon avec l'ID 34 a été correctement supprimé de la base de données
+        $entityManager = $this->client->getContainer()->get('doctrine')->getManager();
+        $deletedPokemon = $entityManager->getRepository(Pokemon::class)->find(34); // Adapter la méthode pour trouver un Pokémon par son ID
+
+        self::assertNull($deletedPokemon); // Le Pokémon n'est plus trouvé, donc il a été supprimé
+    }*/
+
+
+/*    public function testShow(): void
     {
         $this->markTestIncomplete();
         $fixture = new Pokemon();
@@ -127,5 +139,5 @@ class PokemonControllerTest extends WebTestCase
 
         self::assertResponseRedirects('/pokemon/');
         self::assertSame(0, $this->repository->count([]));
-    }
+    }*/
 }

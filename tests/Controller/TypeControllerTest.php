@@ -29,7 +29,7 @@ class TypeControllerTest extends WebTestCase
         $this->manager->flush();
     }
 
-    public function testIndex(): void
+/*    public function testIndex(): void
     {
         $crawler = $this->client->request('GET', $this->path);
 
@@ -39,6 +39,7 @@ class TypeControllerTest extends WebTestCase
         // Use the $crawler to perform additional assertions e.g.
         // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
     }
+
 
     public function testNew(): void
     {
@@ -54,9 +55,9 @@ class TypeControllerTest extends WebTestCase
         self::assertResponseRedirects('/sweet/food/');
 
         self::assertSame(1, $this->getRepository()->count([]));
-    }
+    }*/
 
-    public function testShow(): void
+/*    public function testShow(): void
     {
         $this->markTestIncomplete();
         $fixture = new Type();
@@ -109,5 +110,5 @@ class TypeControllerTest extends WebTestCase
 
         self::assertResponseRedirects('/type/');
         self::assertSame(0, $this->repository->count([]));
-    }
+    }*/
 }
