@@ -3,17 +3,31 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1 class="text-center">Register</h1>
 
-    {{ form_errors(registrationForm) }}
+    <div class="card">
+        <div class="card-header">
+            {{ form_errors(registrationForm) }}
+        </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="card-body">
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.username, {
+                    'attr': {'class': 'form-group'},
+                    widget: {'attr': {'class': 'from-text, form-control'}}
+                }) }}
+        
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password',
+                    widget: {'attr': {'class': 'form-control'}}
+                }) }}
 
-        <button type="submit" class="btn">Register</button>
+                {{ form_row(registrationForm.agreeTerms) }}
+
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-warning">Register</button>
+        </div>
+    </div>
     {{ form_end(registrationForm) }}
 {% endblock %}
