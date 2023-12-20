@@ -3,11 +3,15 @@
 {% block title %}Edit Type{% endblock %}
 
 {% block body %}
-    <h1>Edit Type</h1>
+    <h1 class="text-center">Edit Type : {{ type.nom }}</h1>
 
-    {{ include('type/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="card">
+            {{ include('type/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_type_index') }}">back to list</a>
+                <a class="btn btn-secondary mr-2" href="{{ path('app_type_index') }}">back to list</a>
 
-    {{ include('type/_delete_form.html.twig') }}
+                {{ include('type/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

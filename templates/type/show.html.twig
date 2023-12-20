@@ -3,7 +3,7 @@
 {% block title %}Type{% endblock %}
 
 {% block body %}
-    <h1 >Type : {{ type.nom }}</h1>
+    <h1 class="text-center">Type : {{ type.nom }}</h1>
 
     <div class="container">
 
@@ -35,13 +35,16 @@
                 {% endfor %}
         </div>
 
-        <div class="row">
+        <div class="card-footer">
+            <div class="row">
 
-            <a class="btn btn-secondary" href="{{ path('app_type_index') }}">back type list</a>
+                <a class="btn btn-secondary" href="{{ path('app_type_index') }}">back type list</a>
 
-            <a class="btn btn-warning ml-2 mr-2" href="{{ path('app_type_edit', {'id': type.id}) }}">edit</a>
+                <a class="btn btn-warning ml-2 mr-2" href="{{ path('app_type_edit', {'id': type.id}) }}">edit</a>
 
-            {{ include('type/_delete_form.html.twig') }}
+                {{ include('type/_delete_form.html.twig') }}
+                
+            </div>
         </div>
     </div>
 {% endblock %}

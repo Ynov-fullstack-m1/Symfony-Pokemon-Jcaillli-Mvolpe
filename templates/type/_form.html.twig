@@ -1,7 +1,11 @@
 {{ form_start(form) }}
-    <div class="form-group">
-        {{ form_label(form.nom) }}
-        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+    <div class="card-body">
+        <div class="form-group">
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
     </div>
-    <button class="btn btn-primary">{{ button_label|default(' Save') }}</button>
+    <div class="card-footer">
+        <div class="flex-row d-flex">
+            <button class="btn btn-success mr-2">{{ button_label|default(' Save') }}</button>
 {{ form_end(form) }}
