@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pokedex{% endblock %}
+
+{% block body %}
+        <h1 class="text-center">Bienvenue sur votre pokedex</h1>
+        <img src="https://getwallpapers.com/wallpaper/full/6/6/8/391357.jpg" class="img-fluid" alt="Pokedex">
+        <div class="text-center mt-2">
+            {% if not(app.user) %}
+                <a class="btn btn-primary btn-lg mr-1" href="{{ path('app_login') }}">Login</a>
+                <a class="btn btn-warning btn-lg ml-1" href="{{ path('app_register') }}">Register</a>
+            {% endif %}
+        </div>
+{% endblock %}
